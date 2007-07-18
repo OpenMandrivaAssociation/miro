@@ -1,20 +1,19 @@
 %define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
 
-Name:           democracy
-Version:        0.9.6
-Release:        %mkrel 3
-Summary:        Democracy Player
+Name:           miro
+Version:        0.9.8
+Release:        %mkrel 1
+Summary:        Miro Player
 
 Group:          Video
 License:        GPL
-URL:            http://www.getdemocracy.com/
-Source0:        ftp://ftp.osuosl.org/pub/pculture.org/democracy/src/Democracy-%version.tar.gz
+URL:            http://www.getmiro.com/
+Source0:        ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.bz2
 # gw use the standard mdk folders, remove this once we move to xdg-user-dirs
-Patch: Democracy-0.9.5.3-mdk-folders.patch
+Patch: Miro-0.9.8-mdk-folders.patch
 # gw from Debian: don't check for software updates
 Patch1: Democracy-0.9.5.3-no-autoupdate.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires:  pygtk2.0-devel
 BuildRequires:  libxine-devel 
 BuildRequires:  python-pyrex
@@ -30,14 +29,15 @@ Requires: python-pyrex
 Requires:	libmozilla-firefox = %mozver
 Requires(post)  : desktop-file-utils
 Requires(postun): desktop-file-utils
-
+Provides: democracy
+Obsoletes: democracy
 
 %description
 Internet TV player with integrated RSS and BitTorrent functionality.
 
 
 %prep
-%setup -q -n Democracy-%version
+%setup -q -n Miro-%version
 %patch -p1 -b .mdk-folders
 %patch1 -p0 -b .no-autoupdate
 
@@ -49,16 +49,16 @@ cd platform/gtk-x11 && CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
 rm -rf $RPM_BUILD_ROOT
 cd platform/gtk-x11 && %{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
 cd ../..
-%find_lang democracyplayer
+%find_lang miro
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="X-MandrivaLinux-Multimedia-Video" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-mv %buildroot%_bindir/democracyplayer %buildroot%_bindir/democracyplayer.real
-cat > %buildroot%_bindir/democracyplayer << EOF
+mv %buildroot%_bindir/miro %buildroot%_bindir/miro.real
+cat > %buildroot%_bindir/miro << EOF
 #!/bin/sh
-LD_LIBRARY_PATH=%_libdir/firefox-%mozver democracyplayer.real "\$@"
+LD_LIBRARY_PATH=%_libdir/firefox-%mozver miro.real "\$@"
 EOF
 
 %clean
@@ -72,13 +72,13 @@ rm -rf $RPM_BUILD_ROOT
 %clean_desktop_database
 %clean_mime_database
 
-%files -f democracyplayer.lang
+%files -f miro.lang
 %defattr(-,root,root,-)
 %doc README CREDITS
 %attr(755,root,root) %_bindir/*
-%{_datadir}/democracy
+%{_datadir}/miro
 %{_datadir}/pixmaps/*
 %{_datadir}/applications/*.desktop
 %{_mandir}/man1/*
 %{_datadir}/mime/packages/*.xml
-%{py_platsitedir}/democracy*
+%{py_platsitedir}/miro*
