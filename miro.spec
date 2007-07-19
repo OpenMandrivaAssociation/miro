@@ -2,7 +2,7 @@
 
 Name:           miro
 Version:        0.9.8
-Release:        %mkrel 2
+Release:        %mkrel 3
 Summary:        Miro Player
 
 Group:          Video
@@ -14,6 +14,8 @@ Patch: Miro-0.9.8-mdk-folders.patch
 # gw from Debian: don't check for software updates
 Patch1: Democracy-0.9.5.3-no-autoupdate.patch
 Patch2: Miro-0.9.8-mime-package.patch
+# gw https://develop.participatoryculture.org/trac/democracy/ticket/7270
+Patch3: dbus-fix.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pygtk2.0-devel
 BuildRequires:  libxine-devel 
@@ -42,6 +44,7 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %patch -p1 -b .mdk-folders
 %patch1 -p0 -b .no-autoupdate
 %patch2 -p1 -b .mime
+%patch3 -p0
 
 %build
 cd platform/gtk-x11 && CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
