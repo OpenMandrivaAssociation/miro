@@ -2,7 +2,7 @@
 
 Name:           miro
 Version:        0.9.8
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Miro Player
 
 Group:          Video
@@ -13,6 +13,7 @@ Source0:        ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar
 Patch: Miro-0.9.8-mdk-folders.patch
 # gw from Debian: don't check for software updates
 Patch1: Democracy-0.9.5.3-no-autoupdate.patch
+Patch2: Miro-0.9.8-mime-package.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pygtk2.0-devel
 BuildRequires:  libxine-devel 
@@ -40,6 +41,7 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %setup -q -n Miro-%version
 %patch -p1 -b .mdk-folders
 %patch1 -p0 -b .no-autoupdate
+%patch2 -p1 -b .mime
 
 %build
 cd platform/gtk-x11 && CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
@@ -55,11 +57,11 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="X-MandrivaLinux-Multimedia-Video" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-mv %buildroot%_bindir/miro %buildroot%_bindir/miro.real
-cat > %buildroot%_bindir/miro << EOF
-#!/bin/sh
-LD_LIBRARY_PATH=%_libdir/firefox-%mozver miro.real "\$@"
-EOF
+#mv %buildroot%_bindir/miro %buildroot%_bindir/miro.real
+#cat > %buildroot%_bindir/miro << EOF
+##!/bin/sh
+#LD_LIBRARY_PATH=%_libdir/firefox-%mozver miro.real "\$@"
+#EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
