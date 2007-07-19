@@ -2,7 +2,7 @@
 
 Name:           miro
 Version:        0.9.8
-Release:        %mkrel 3
+Release:        %mkrel 4
 Summary:        Miro Player
 
 Group:          Video
@@ -26,6 +26,7 @@ BuildRequires:  libxcb-devel libpthread-stubs
 BuildRequires:  gtk2-devel
 BuildRequires:  mozilla-firefox-devel
 BuildRequires: desktop-file-utils
+Requires: pygtk2.0-libglade
 Requires:	gnome-python-gtkmozembed gnome-python-gconf dbus-python
 Requires: python-pyrex
 #Requires: libfame 
@@ -60,11 +61,11 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="X-MandrivaLinux-Multimedia-Video" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-#mv %buildroot%_bindir/miro %buildroot%_bindir/miro.real
-#cat > %buildroot%_bindir/miro << EOF
-##!/bin/sh
-#LD_LIBRARY_PATH=%_libdir/firefox-%mozver miro.real "\$@"
-#EOF
+mv %buildroot%_bindir/miro %buildroot%_bindir/miro.real
+cat > %buildroot%_bindir/miro << EOF
+#!/bin/sh
+LD_LIBRARY_PATH=%_libdir/firefox-%mozver miro.real "\$@"
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
