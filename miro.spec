@@ -1,8 +1,8 @@
 %define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
-
+%define date 2007-07-24
 Name:           miro
-Version:        0.9.8
-Release:        %mkrel 5
+Version:        0.9.8.1
+Release:        %mkrel 1
 Summary:        Miro Player
 
 Group:          Video
@@ -41,7 +41,7 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 
 %prep
-%setup -q -n Miro-%version
+%setup -q -n Miro-%date
 %patch -p1 -b .mdk-folders
 %patch1 -p0 -b .no-autoupdate
 %patch2 -p1 -b .mime
