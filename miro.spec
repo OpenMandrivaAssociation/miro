@@ -9,8 +9,6 @@ Group:          Video
 License:        GPL
 URL:            http://www.getmiro.com/
 Source0:        ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.bz2
-# gw use the standard mdk folders, remove this once we move to xdg-user-dirs
-Patch: Miro-0.9.8-mdk-folders.patch
 # gw from Debian: don't check for software updates
 Patch1: Democracy-0.9.5.3-no-autoupdate.patch
 Patch2: Miro-0.9.8-mime-package.patch
@@ -42,7 +40,6 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q -n Miro-%date
-%patch -p1 -b .mdk-folders
 %patch1 -p0 -b .no-autoupdate
 %patch2 -p1 -b .mime
 %patch3 -p0
