@@ -62,13 +62,13 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Video" \
   --add-category="TV" \
-  --add-category=""X-MandrivaLinux-CrossDesktop" \
+  --add-category="X-MandrivaLinux-CrossDesktop" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{24x24,72x72,128x128}/apps
-mv -f %{buildroot}%{_datadir}/pixmaps/%{name}-24x24.png %{buildroot}%{_iconsdir}/hicolor/24x24/apps/%{name}.png
-mv -f %{buildroot}%{_datadir}/pixmaps/%{name}-72x72.png %{buildroot}%{_iconsdir}/hicolor/72x72/apps/%{name}.png
-mv -f %{buildroot}%{_datadir}/pixmaps/%{name}-128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
+cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-24x24.png %{buildroot}%{_iconsdir}/hicolor/24x24/apps/%{name}.png
+cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-72x72.png %{buildroot}%{_iconsdir}/hicolor/72x72/apps/%{name}.png
+cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,7 +89,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %_bindir/*
 %{_datadir}/miro
 %{_datadir}/applications/*.desktop
-%{buildroot}%{_iconsdir}/hicolor/*/apps/*.png
+%{_iconsdir}/hicolor/*/apps/*.png
+%{_datadir}/pixmaps/*.png
 %{_mandir}/man1/*
 %{_datadir}/mime/packages/*.xml
 %{py_platsitedir}/miro*
