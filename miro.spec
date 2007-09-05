@@ -15,6 +15,8 @@ Patch1:		Democracy-0.9.9-no-autoupdate.patch
 Patch2:		Miro-0.9.8-mime-package.patch
 # gw https://develop.participatoryculture.org/trac/democracy/ticket/7270
 Patch3:		dbus-fix.patch
+# gw os.getlogin() fails in the build system
+Patch4: Miro-0.9.9-work-around-python-problem.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
@@ -45,7 +47,8 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %setup -q -n Miro-%version
 %patch1 -p0 -b .no-autoupdate
 %patch2 -p1 -b .mime
-#%patch3 -p0
+%patch3 -p0
+%patch4 -p1
 
 %build
 cd platform/gtk-x11 && CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
@@ -70,6 +73,8 @@ mkdir -p %{buildroot}%{_iconsdir}/hicolor/{24x24,72x72,128x128}/apps
 cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-24x24.png %{buildroot}%{_iconsdir}/hicolor/24x24/apps/%{name}.png
 cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-72x72.png %{buildroot}%{_iconsdir}/hicolor/72x72/apps/%{name}.png
 cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
+
+gunzip %buildroot%{_mandir}/man1/*.gz
 
 %clean
 rm -rf $RPM_BUILD_ROOT
