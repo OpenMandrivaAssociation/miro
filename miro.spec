@@ -25,6 +25,7 @@ BuildRequires:	libxcb-devel libpthread-stubs
 BuildRequires:	gtk2-devel
 BuildRequires:	mozilla-firefox-devel
 BuildRequires:	desktop-file-utils
+BuildRequires:	libxv-devel
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gtkmozembed gnome-python-gconf dbus-python
 Requires:	python-pyrex
