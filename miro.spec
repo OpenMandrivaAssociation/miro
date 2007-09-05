@@ -2,14 +2,14 @@
 %define date 2007-07-24
 
 Name:		miro
-Version:	0.9.8.1
-Release:	%mkrel 2
+Version:	0.9.9
+Release:	%mkrel 1
 Summary:	Miro Player
 
 Group:		Video
 License:	GPLv2+
 URL:		http://www.getmiro.com/
-Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.bz2
+Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
 # gw from Debian: don't check for software updates
 Patch1:		Democracy-0.9.5.3-no-autoupdate.patch
 Patch2:		Miro-0.9.8-mime-package.patch
@@ -41,10 +41,10 @@ Obsoletes:	democracy
 Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
-%setup -q -n Miro-%date
-%patch1 -p0 -b .no-autoupdate
+%setup -q -n Miro-%version
+#%patch1 -p0 -b .no-autoupdate
 %patch2 -p1 -b .mime
-%patch3 -p0
+#%patch3 -p0
 
 %build
 cd platform/gtk-x11 && CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
