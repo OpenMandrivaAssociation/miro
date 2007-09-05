@@ -3,7 +3,7 @@
 
 Name:		miro
 Version:	0.9.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Miro Player
 
 Group:		Video
@@ -13,8 +13,6 @@ Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
 # gw from Debian: don't check for software updates
 Patch1:		Democracy-0.9.9-no-autoupdate.patch
 Patch2:		Miro-0.9.8-mime-package.patch
-# gw https://develop.participatoryculture.org/trac/democracy/ticket/7270
-Patch3:		dbus-fix.patch
 # gw os.getlogin() fails in the build system
 Patch4: Miro-0.9.9-work-around-python-problem.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
@@ -47,7 +45,6 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %setup -q -n Miro-%version
 %patch1 -p0 -b .no-autoupdate
 %patch2 -p1 -b .mime
-%patch3 -p0
 %patch4 -p1
 
 %build
