@@ -11,7 +11,7 @@ URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
 # gw from Debian: don't check for software updates
 Patch1:		Democracy-0.9.9-no-autoupdate.patch
-Patch2:		Miro-0.9.8-mime-package.patch
+Patch2:		Miro-0.9.9.1-mime-package.patch
 # gw os.getlogin() fails in the build system
 Patch4: Miro-0.9.9-work-around-python-problem.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
