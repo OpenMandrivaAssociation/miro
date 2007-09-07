@@ -1,9 +1,8 @@
 %define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
-%define date 2007-07-24
 
 Name:		miro
-Version:	0.9.9
-Release:	%mkrel 2
+Version:	0.9.9.1
+Release:	%mkrel 1
 Summary:	Miro Player
 
 Group:		Video
