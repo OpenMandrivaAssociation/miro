@@ -1,8 +1,8 @@
 %define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
 
 Name:		miro
-Version:	0.9.9.1
-Release:	%mkrel 3
+Version:	0.9.9.9
+Release:	%mkrel 1
 Summary:	Miro Player
 
 Group:		Video
@@ -11,10 +11,9 @@ URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
 Patch: Miro-0.9.9.1-boost.patch
 # gw from Debian: don't check for software updates
-Patch1:		Democracy-0.9.9-no-autoupdate.patch
-Patch2:		Miro-0.9.9.1-mime-package.patch
+Patch1:		Miro-0.9.9.9-no-autoupdate.patch
 # gw os.getlogin() fails in the build system
-Patch4: Miro-0.9.9-work-around-python-problem.patch
+Patch4: Miro-0.9.9.9-work-around-python-problem.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
@@ -44,9 +43,12 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %prep
 %setup -q -n Miro-%version
 %patch -p1
-%patch1 -p0 -b .no-autoupdate
-%patch2 -p1 -b .mime
+%patch1 -p1 -b .no-autoupdate
 %patch4 -p1
+#gw fix wrong libexec dir
+perl -pi -e "s^libexec^%_lib^" ./platform/gtk-x11/frontend_implementation/xinerenderer.py platform/gtk-x11/setup.py
+
+
 
 %build
 cd platform/gtk-x11 && CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
@@ -95,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/*.png
+%_libexecdir/xine_extractor
 %{_mandir}/man1/*
 %{_datadir}/mime/packages/*.xml
 %{py_platsitedir}/miro*
