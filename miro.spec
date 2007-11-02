@@ -2,14 +2,13 @@
 
 Name:		miro
 Version:	0.9.9.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Miro Player
 
 Group:		Video
 License:	GPLv2+
 URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
-Patch: Miro-0.9.9.1-boost.patch
 # gw from Debian: don't check for software updates
 Patch1:		Miro-0.9.9.9-no-autoupdate.patch
 # gw os.getlogin() fails in the build system
@@ -42,7 +41,6 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q -n Miro-%version
-%patch -p1
 %patch1 -p1 -b .no-autoupdate
 %patch4 -p1
 #gw fix wrong libexec dir
