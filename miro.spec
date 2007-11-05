@@ -2,7 +2,7 @@
 
 Name:		miro
 Version:	0.9.9.9
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Miro Player
 
 Group:		Video
