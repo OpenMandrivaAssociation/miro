@@ -13,6 +13,7 @@ Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
 Patch1:		Miro-0.9.9.9-no-autoupdate.patch
 # gw os.getlogin() fails in the build system
 Patch4: Miro-0.9.9.9-work-around-python-problem.patch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
 BuildRequires:	python-pyrex
