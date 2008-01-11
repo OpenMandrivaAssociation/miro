@@ -19,6 +19,7 @@ BuildRequires:	libxine-devel
 BuildRequires:	python-pyrex
 #BuildRequires:	libfame 
 BuildRequires:	boost-devel
+BuildRequires:	openssl-devel
 BuildRequires:	libxcb-devel libpthread-stubs
 BuildRequires:	gtk2-devel
 BuildRequires:	mozilla-firefox-devel
