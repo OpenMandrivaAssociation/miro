@@ -1,8 +1,8 @@
 %define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
 
 Name:		miro
-Version:	1.0
-Release:	%mkrel 2
+Version:	1.1
+Release:	%mkrel 1
 Summary:	Miro Player
 
 Group:		Video
@@ -28,6 +28,8 @@ Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gtkmozembed gnome-python-gconf dbus-python
 Requires:	python-pyrex
 #Requires:	libfame 
+Requires: gstreamer0.10-python
+Requires: gstreamer0.10-plugins-base
 Requires:	libmozilla-firefox = %mozver
 
 Requires(post):		desktop-file-utils
