@@ -1,7 +1,7 @@
 %define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
 
 Name:		miro
-Version:	1.2.1
+Version:	1.2.3
 Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
@@ -48,7 +48,7 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %patch1 -p1 -b .no-autoupdate
 %patch4 -p1
 #gw fix wrong libexec dir
-perl -pi -e "s^libexec^%_lib^" ./platform/gtk-x11/frontend_implementation/xinerenderer.py platform/gtk-x11/setup.py
+perl -pi -e "s^libexec^%_lib^" ./platform/gtk-x11/platform/renderers/xinerenderer.py platform/gtk-x11/setup.py
 
 
 
