@@ -1,7 +1,7 @@
 %define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
 
 Name:		miro
-Version:	1.2.3
+Version:	1.2.4
 Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
