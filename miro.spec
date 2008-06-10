@@ -13,6 +13,7 @@ Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
 Patch1:		Miro-1.2.1-no-autoupdate.patch
 # gw os.getlogin() fails in the build system
 Patch4: Miro-0.9.9.9-work-around-python-problem.patch
+Patch5: miro-1.2.4-gcc-4.3.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
@@ -47,6 +48,7 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %setup -q -n Miro-%version
 %patch1 -p1 -b .no-autoupdate
 %patch4 -p1
+%patch5 -p1
 #gw fix wrong libexec dir
 perl -pi -e "s^libexec^%_lib^" ./platform/gtk-x11/platform/renderers/xinerenderer.py platform/gtk-x11/setup.py
 
