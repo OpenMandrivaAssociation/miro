@@ -1,13 +1,20 @@
+%if %mdvver < 200900
 %define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
-
+%else
+%define xulrunner 1.9
+%define libname %mklibname xulrunner %xulrunner
+%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
+%endif
 Name:		miro
 Version:	1.2.4
-Release:	%mkrel 4
+Release:	%mkrel 5
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
 URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
+#gw from Fedora, use xulrunner
+Patch: Miro-xulrunner.patch
 # gw from Debian: don't check for software updates
 # AdamW: rediffed for 1.2.1 - 2008/03
 Patch1:		Miro-1.2.1-no-autoupdate.patch
@@ -23,7 +30,11 @@ BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	libxcb-devel libpthread-stubs
 BuildRequires:	gtk2-devel
+%if %mdvver < 200900
 BuildRequires:	mozilla-firefox-devel
+%else
+BuildRequires: xulrunner-devel-unstable >= %xulrunner
+%endif
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxv-devel
 BuildRequires:	ImageMagick
@@ -33,7 +44,12 @@ Requires:	python-pyrex
 #Requires:	libfame 
 Requires: gstreamer0.10-python
 Requires: gstreamer0.10-plugins-base
+%if %mdvver < 200900
 Requires:	libmozilla-firefox = %mozver
+%else
+#gw as Fedora does:
+Requires: %libname = %xulver
+%endif
 
 Requires(post):		desktop-file-utils
 Requires(postun):	desktop-file-utils
@@ -46,6 +62,9 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q -n Miro-%version
+%if %mdvver >= 200900
+%patch -p1
+%endif
 %patch1 -p1 -b .no-autoupdate
 %patch4 -p1
 %patch5 -p1
