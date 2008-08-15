@@ -6,8 +6,8 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 %endif
 Name:		miro
-Version:	1.2.4
-Release:	%mkrel 5
+Version:	1.2.6
+Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
