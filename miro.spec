@@ -6,7 +6,7 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 %endif
 Name:		miro
-Version:	1.2.6
+Version:	1.2.7
 Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
@@ -18,6 +18,8 @@ Patch: Miro-xulrunner.patch
 # gw from Debian: don't check for software updates
 # AdamW: rediffed for 1.2.1 - 2008/03
 Patch1:		Miro-1.2.1-no-autoupdate.patch
+#gw from Fedora, build with Boost 1.36
+Patch2:		Miro-1.2.6-boost.patch
 # gw os.getlogin() fails in the build system
 Patch4: Miro-0.9.9.9-work-around-python-problem.patch
 Patch5: miro-1.2.4-gcc-4.3.patch
@@ -70,6 +72,7 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %patch -p1
 %endif
 %patch1 -p1 -b .no-autoupdate
+%patch2 -p1
 %patch4 -p1
 %patch5 -p1
 #gw fix wrong libexec dir
