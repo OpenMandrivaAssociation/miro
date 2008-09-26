@@ -7,7 +7,7 @@
 %endif
 Name:		miro
 Version:	1.2.6
-Release:	%mkrel 2
+Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -28,7 +28,11 @@ BuildRequires:	python-pyrex
 #BuildRequires:	libfame 
 BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
+%if %mdvver >= 200900
+BuildRequires:	xcb-devel
+%else
 BuildRequires:	libxcb-devel libpthread-stubs
+%endif
 BuildRequires:	gtk2-devel
 %if %mdvver < 200900
 BuildRequires:	mozilla-firefox-devel
