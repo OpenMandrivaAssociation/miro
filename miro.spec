@@ -43,7 +43,7 @@ BuildRequires: xulrunner-devel-unstable >= %xulrunner
 %endif
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxv-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gtkmozembed gnome-python-gconf dbus-python
 Requires:	python-pyrex
