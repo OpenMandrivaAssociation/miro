@@ -7,7 +7,7 @@
 %endif
 Name:		miro
 Version:	1.2.8
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -21,8 +21,18 @@ Patch1:		Miro-1.2.1-no-autoupdate.patch
 #gw from Fedora, build with Boost 1.36
 Patch2:		Miro-1.2.6-boost.patch
 # gw os.getlogin() fails in the build system
-Patch4: Miro-0.9.9.9-work-around-python-problem.patch
+Patch4: miro-1.2.8-work-around-python-problem.patch
 Patch5: miro-1.2.4-gcc-4.3.patch
+# from upstream SVN, re-diffed: test for system libtorrent and use if
+# present. can be dropped with 2.0+. - AdamW 2008/12
+Patch6: miro-1.2.8-system_libtorrent.patch
+# disable iheartmiro, purely because it causes the app to hang on
+# start. sorry, miro folks, we're not trying to cut off your revenue,
+# fix is welcome. - AdamW 2008/12
+Patch7: miro-1.2.8-disable_heart.patch
+# from upstream SVN: work with libtorrent 0.14. can be dropped with
+# 2.0+. - AdamW 2008/12
+Patch8: miro-1.2.8-libtorrent14.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
@@ -44,12 +54,15 @@ BuildRequires: xulrunner-devel-unstable >= %xulrunner
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxv-devel
 BuildRequires:	imagemagick
+BuildRequires:	libtorrent-rasterbar-devel
+BuildRequires:	python-libtorrent-rasterbar
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gtkmozembed gnome-python-gconf dbus-python
 Requires:	python-pyrex
 #Requires:	libfame 
 Requires: gstreamer0.10-python
 Requires: gstreamer0.10-plugins-base
+Requires: python-libtorrent-rasterbar
 %if %mdvver < 200900
 Requires:	libmozilla-firefox = %mozver
 %else
@@ -75,6 +88,9 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %patch2 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
 #gw fix wrong libexec dir
 perl -pi -e "s^libexec^%_lib^" ./platform/gtk-x11/platform/renderers/xinerenderer.py platform/gtk-x11/setup.py
 
