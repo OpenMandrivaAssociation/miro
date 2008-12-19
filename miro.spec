@@ -18,8 +18,6 @@ Patch: Miro-xulrunner.patch
 # gw from Debian: don't check for software updates
 # AdamW: rediffed for 1.2.1 - 2008/03
 Patch1:		Miro-1.2.1-no-autoupdate.patch
-#gw from Fedora, build with Boost 1.36
-Patch2:		Miro-1.2.6-boost.patch
 # gw os.getlogin() fails in the build system
 Patch4: miro-1.2.8-work-around-python-problem.patch
 Patch5: miro-1.2.4-gcc-4.3.patch
@@ -37,19 +35,18 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
 BuildRequires:	python-pyrex
-#BuildRequires:	libfame 
-BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 %if %mdvver >= 200900
 BuildRequires:	xcb-devel
 %else
-BuildRequires:	libxcb-devel libpthread-stubs
+BuildRequires:	libxcb-devel
+BuildRequires:	libpthread-stubs
 %endif
 BuildRequires:	gtk2-devel
 %if %mdvver < 200900
 BuildRequires:	mozilla-firefox-devel
 %else
-BuildRequires: xulrunner-devel-unstable >= %xulrunner
+BuildRequires:	xulrunner-devel-unstable >= %xulrunner
 %endif
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxv-devel
@@ -57,12 +54,13 @@ BuildRequires:	imagemagick
 BuildRequires:	libtorrent-rasterbar-devel
 BuildRequires:	python-libtorrent-rasterbar
 Requires:	pygtk2.0-libglade
-Requires:	gnome-python-gtkmozembed gnome-python-gconf dbus-python
+Requires:	gnome-python-gtkmozembed
+Requires:	gnome-python-gconf
+Requires:	dbus-python
 Requires:	python-pyrex
-#Requires:	libfame 
-Requires: gstreamer0.10-python
-Requires: gstreamer0.10-plugins-base
-Requires: python-libtorrent-rasterbar
+Requires:	gstreamer0.10-python
+Requires:	gstreamer0.10-plugins-base
+Requires:	python-libtorrent-rasterbar
 %if %mdvver < 200900
 Requires:	libmozilla-firefox = %mozver
 %else
@@ -85,7 +83,6 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 %patch -p1
 %endif
 %patch1 -p1 -b .no-autoupdate
-%patch2 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
