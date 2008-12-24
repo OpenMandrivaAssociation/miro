@@ -7,7 +7,7 @@
 %endif
 Name:		miro
 Version:	1.2.8
-Release:	%mkrel 5
+Release:	%mkrel 6
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
