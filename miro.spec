@@ -35,8 +35,13 @@ BuildRequires:	xulrunner-devel-unstable >= %xulrunner
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxv-devel
 BuildRequires:	imagemagick
+%if %mdvver > 200810
 BuildRequires:	libtorrent-rasterbar-devel
 BuildRequires:	python-libtorrent-rasterbar
+Requires:	python-libtorrent-rasterbar
+%else
+BuildRequires:  libboost-devel
+%endif
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gtkmozembed
 Requires:	gnome-python-gconf
@@ -44,7 +49,6 @@ Requires:	dbus-python
 Requires:	python-pyrex
 Requires:	gstreamer0.10-python
 Requires:	gstreamer0.10-plugins-base
-Requires:	python-libtorrent-rasterbar
 %if %mdvver < 200900
 Requires:	libmozilla-firefox = %mozver
 %else
