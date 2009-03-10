@@ -6,8 +6,8 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 %endif
 Name:		miro
-Version:	2.0.1
-Release:	%mkrel 2
+Version:	2.0.2
+Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -121,6 +121,7 @@ rm -rf %{buildroot}
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/*.xpm
 %dir %_libdir/miro/
 %_libdir/miro/xine_extractor
 %{_mandir}/man1/*
