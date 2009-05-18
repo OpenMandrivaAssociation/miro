@@ -1,13 +1,10 @@
-%if %mdvver < 200900
-%define mozver %(rpm -q --queryformat %%{VERSION} mozilla-firefox)
-%else
 %define xulrunner 1.9
 %define libname %mklibname xulrunner %xulrunner
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
-%endif
+
 Name:		miro
 Version:	2.0.4
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -27,11 +24,7 @@ BuildRequires:	libxcb-devel
 BuildRequires:	libpthread-stubs
 %endif
 BuildRequires:	gtk2-devel
-%if %mdvver < 200900
-BuildRequires:	mozilla-firefox-devel
-%else
 BuildRequires:	xulrunner-devel-unstable >= %xulrunner
-%endif
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxv-devel
 BuildRequires:	imagemagick
@@ -49,12 +42,9 @@ Requires:	dbus-python
 Requires:	python-pyrex
 Requires:	gstreamer0.10-python
 Requires:	gstreamer0.10-plugins-base
-%if %mdvver < 200900
-Requires:	libmozilla-firefox = %mozver
-%else
 #gw as Fedora does:
 Requires: %libname = %xulver
-%endif
+
 
 Requires(post):		desktop-file-utils
 Requires(postun):	desktop-file-utils
