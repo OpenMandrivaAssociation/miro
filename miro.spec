@@ -3,8 +3,8 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 
 Name:		miro
-Version:	2.0.4
-Release:	%mkrel 3
+Version:	2.0.5
+Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -17,6 +17,7 @@ BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
 BuildRequires:	python-pyrex
 BuildRequires:	openssl-devel
+BuildRequires:	libgsf-devel
 %if %mdvver >= 200900
 BuildRequires:	xcb-devel
 %else
