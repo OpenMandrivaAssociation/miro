@@ -3,8 +3,8 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 
 Name:		miro
-Version:	2.0.5
-Release:	%mkrel 2
+Version:	2.5.1
+Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -83,12 +83,6 @@ desktop-file-install --vendor="" \
   --add-category="X-MandrivaLinux-CrossDesktop" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/{24x24,48x48,72x72,128x128}/apps
-cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-24x24.png %{buildroot}%{_iconsdir}/hicolor/24x24/apps/%{name}.png
-cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-72x72.png %{buildroot}%{_iconsdir}/hicolor/72x72/apps/%{name}.png
-cp -f %{buildroot}%{_datadir}/pixmaps/%{name}-128x128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
-convert -scale 48x48 %{buildroot}%{_datadir}/pixmaps/%{name}-72x72.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-
 gunzip %buildroot%{_mandir}/man1/*.gz
 
 %clean
@@ -111,7 +105,6 @@ rm -rf %{buildroot}
 %{_datadir}/miro
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
-%{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/*.xpm
 %dir %_libdir/miro/
 %_libdir/miro/xine_extractor
