@@ -10,8 +10,6 @@ Group:		Video
 License:	GPLv2+
 URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
-# gw os.getlogin() fails in the build system
-Patch4: miro-2.0-work-around-python-problem.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
@@ -58,7 +56,6 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q -n Miro-%version
-#patch4 -p1
 #gw fix wrong libdir
 perl -pi -e "s^lib/miro^%_lib/miro^" ./platform/gtk-x11/plat/renderers/xinerenderer.py platform/gtk-x11/setup.py
 
