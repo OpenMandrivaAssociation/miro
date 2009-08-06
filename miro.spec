@@ -58,7 +58,7 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q -n Miro-%version
-%patch4 -p1
+#patch4 -p1
 #gw fix wrong libdir
 perl -pi -e "s^lib/miro^%_lib/miro^" ./platform/gtk-x11/plat/renderers/xinerenderer.py platform/gtk-x11/setup.py
 
