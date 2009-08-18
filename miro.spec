@@ -1,11 +1,3 @@
-%if %mdvver >= 201000
-%define xulrunner 1.9.1.2
-%else
-%define xulrunner 1.9
-%endif
-%define libname %mklibname xulrunner %xulrunner
-%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
-
 Name:		miro
 Version:	2.5.2
 Release:	%mkrel 3
@@ -49,9 +41,15 @@ Requires:	dbus-python
 Requires:	python-pyrex
 Requires:	gstreamer0.10-python
 Requires:	gstreamer0.10-plugins-base
+%if %mdvver >= 201000
+Requires: libxulrunner = %{xulrunner_version}
+%else
 #gw as Fedora does:
+%define xulrunner 1.9
+%define libname %mklibname xulrunner %xulrunner
+%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 Requires: %libname = %xulver
-
+%endif
 
 Requires(post):		desktop-file-utils
 Requires(postun):	desktop-file-utils
