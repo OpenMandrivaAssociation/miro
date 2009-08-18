@@ -4,7 +4,7 @@
 
 Name:		miro
 Version:	2.5.2
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -23,7 +23,11 @@ BuildRequires:	libxcb-devel
 BuildRequires:	libpthread-stubs
 %endif
 BuildRequires:	gtk2-devel
+%if %mdvver >= 201000
+BuildRequires:	xulrunner-devel >= %xulrunner
+%else
 BuildRequires:	xulrunner-devel-unstable >= %xulrunner
+%endif
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxv-devel
 BuildRequires:	imagemagick
