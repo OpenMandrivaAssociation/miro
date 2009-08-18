@@ -1,4 +1,8 @@
+%if %mdvver >= 201000
+%define xulrunner 1.9.1.2
+%else
 %define xulrunner 1.9
+%endif
 %define libname %mklibname xulrunner %xulrunner
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 
