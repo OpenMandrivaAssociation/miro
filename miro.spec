@@ -1,3 +1,7 @@
+#gw as Fedora does:
+%define xulrunner 1.9
+%define libname %mklibname xulrunner %xulrunner
+%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 
 Name:		miro
 Version:	2.5.2
@@ -23,10 +27,6 @@ BuildRequires:	gtk2-devel
 %if %mdvver >= 201000
 BuildRequires:	xulrunner-devel >= %xulrunner
 %else
-#gw as Fedora does:
-%define xulrunner 1.9
-%define libname %mklibname xulrunner %xulrunner
-%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 BuildRequires:	xulrunner-devel-unstable >= %xulrunner
 %endif
 BuildRequires:	desktop-file-utils
