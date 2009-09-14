@@ -1,3 +1,4 @@
+
 Name:		miro
 Version:	2.5.2
 Release:	%mkrel 4
@@ -22,6 +23,10 @@ BuildRequires:	gtk2-devel
 %if %mdvver >= 201000
 BuildRequires:	xulrunner-devel >= %xulrunner
 %else
+#gw as Fedora does:
+%define xulrunner 1.9
+%define libname %mklibname xulrunner %xulrunner
+%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 BuildRequires:	xulrunner-devel-unstable >= %xulrunner
 %endif
 BuildRequires:	desktop-file-utils
@@ -44,10 +49,6 @@ Requires:	gstreamer0.10-plugins-base
 %if %mdvver >= 201000
 Requires: libxulrunner = %{xulrunner_version}
 %else
-#gw as Fedora does:
-%define xulrunner 1.9
-%define libname %mklibname xulrunner %xulrunner
-%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 Requires: %libname = %xulver
 %endif
 
