@@ -25,7 +25,7 @@ BuildRequires:	libpthread-stubs
 %endif
 BuildRequires:	gtk2-devel
 %if %mdvver >= 201000
-BuildRequires:	xulrunner-devel >= %xulver
+BuildRequires:	xulrunner-devel
 %else
 BuildRequires:	xulrunner-devel-unstable
 %endif
