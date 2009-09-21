@@ -27,7 +27,7 @@ BuildRequires:	gtk2-devel
 %if %mdvver >= 201000
 BuildRequires:	xulrunner-devel >= %xulver
 %else
-BuildRequires:	xulrunner-devel-unstable >= %xulver
+BuildRequires:	xulrunner-devel-unstable
 %endif
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxv-devel
