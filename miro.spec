@@ -4,13 +4,13 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 
 Name:		miro
-Version:	2.5.2
-Release:	%mkrel 5
+Version:	2.5.3
+Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
 URL:		http://www.getmiro.com/
-Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%version.tar.gz
+Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%name-%version.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	libxine-devel 
@@ -62,7 +62,7 @@ Obsoletes:	democracy
 Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
-%setup -q -n Miro-%version
+%setup -q -n %name-%version
 #gw fix wrong libdir
 perl -pi -e "s^lib/miro^%_lib/miro^" ./platform/gtk-x11/plat/renderers/xinerenderer.py platform/gtk-x11/setup.py
 
