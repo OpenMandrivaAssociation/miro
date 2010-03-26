@@ -4,8 +4,8 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 
 Name:		miro
-Version:	2.5.4
-Release:	%mkrel 6
+Version:	3.0
+Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -13,7 +13,6 @@ URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%name-%version.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
-BuildRequires:	libxine-devel 
 BuildRequires:	python-pyrex
 BuildRequires:	openssl-devel
 BuildRequires:	libgsf-devel
@@ -39,7 +38,7 @@ Requires:	python-libtorrent-rasterbar
 %else
 BuildRequires:  libboost-devel
 %endif
-Requires:	pygtk2.0-libglade
+Requires:	pygtk2.0
 Requires:	gnome-python-gtkmozembed
 Requires:	gnome-python-gconf
 Requires:	dbus-python
@@ -63,10 +62,6 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q -n %name-%version
-#gw fix wrong libdir
-perl -pi -e "s^lib/miro^%_lib/miro^" ./platform/gtk-x11/plat/renderers/xinerenderer.py platform/gtk-x11/setup.py
-
-
 
 %build
 cd platform/gtk-x11 && CFLAGS="%{optflags}" %{__python} setup.py build
@@ -110,8 +105,6 @@ rm -rf %{buildroot}
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/*.xpm
-%dir %_libdir/miro/
-%_libdir/miro/xine_extractor
 %{_mandir}/man1/*
 %{_datadir}/mime/packages/*.xml
 %{py_platsitedir}/miro*
