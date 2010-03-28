@@ -5,7 +5,7 @@
 
 Name:		miro
 Version:	3.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -62,6 +62,10 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q -n %name-%version
+sed -i 's@^XPCOM_RUNTIME_PATH =.*@XPCOM_RUNTIME_PATH = "%xulrunner_mozappdir"@' \
+       platform/gtk-x11/setup.py
+sed -i 's@^MOZILLA_LIB_PATH =.*@MOZILLA_LIB_PATH = "%xulrunner_mozappdir"@' \
+       platform/gtk-x11/setup.py
 
 %build
 cd platform/gtk-x11 && CFLAGS="%{optflags}" %{__python} setup.py build
