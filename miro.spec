@@ -5,7 +5,7 @@
 
 Name:		miro
 Version:	3.0
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -112,4 +112,3 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*
 %{_datadir}/mime/packages/*.xml
 %{py_platsitedir}/miro*
-
