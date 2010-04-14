@@ -5,7 +5,7 @@
 
 Name:		miro
 Version:	3.0.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -68,7 +68,7 @@ sed -i 's@^MOZILLA_LIB_PATH =.*@MOZILLA_LIB_PATH = "%xulrunner_mozappdir"@' \
        platform/gtk-x11/setup.py
 
 %build
-cd platform/gtk-x11 && CFLAGS="%{optflags}" %{__python} setup.py build
+cd platform/gtk-x11 && CFLAGS="%{optflags}" LDFLAGS="%?ldflags" %{__python} setup.py build
 
 %install
 rm -rf %{buildroot}
