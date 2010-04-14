@@ -5,7 +5,7 @@
 
 Name:		miro
 Version:	3.0.1
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -84,6 +84,7 @@ desktop-file-install --vendor="" \
   --add-category="Video" \
   --add-category="TV" \
   --add-category="X-MandrivaLinux-CrossDesktop" \
+  --add-category="Network" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 gunzip %buildroot%{_mandir}/man1/*.gz
