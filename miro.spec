@@ -5,7 +5,7 @@
 
 Name:		miro
 Version:	3.0.1
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
