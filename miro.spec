@@ -3,8 +3,6 @@
 %define libname %mklibname xulrunner %xulrunner
 %define xulver %(rpm -q --queryformat %%{VERSION} %libname)
 
-%define subrel 1
-
 Name:		miro
 Version:	3.0.3
 Release:	%mkrel 1
