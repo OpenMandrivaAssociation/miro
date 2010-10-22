@@ -7,28 +7,12 @@ License:	GPLv2+
 URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%name-%version.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires:	pygtk2.0-devel
+BuildRequires:	python-gobject-devel
 BuildRequires:	python-pyrex
-BuildRequires:	openssl-devel
-BuildRequires:	libgsf-devel
-%if %mdvver >= 200900
-BuildRequires:	xcb-devel
-%else
-BuildRequires:	libxcb-devel
-BuildRequires:	libpthread-stubs
-%endif
-BuildRequires:	gtk2-devel
 BuildRequires:	webkitgtk-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	libx11-devel
 BuildRequires:	imagemagick
-%if %mdvver > 200810
-BuildRequires:	libtorrent-rasterbar-devel
-BuildRequires:	python-libtorrent-rasterbar
-Requires:	python-libtorrent-rasterbar
-%else
-BuildRequires:  libboost-devel
-%endif
 Requires:	pygtk2.0
 Requires:	python-webkitgtk
 Requires:	gnome-python-gconf
@@ -36,10 +20,6 @@ Requires:	dbus-python
 Requires:	python-pyrex
 Requires:	gstreamer0.10-python
 Requires:	gstreamer0.10-plugins-base
-
-Requires(post):		desktop-file-utils
-Requires(postun):	desktop-file-utils
-
 Provides:	democracy
 Obsoletes:	democracy
 
@@ -64,8 +44,6 @@ desktop-file-install --vendor="" \
   --remove-key="Encoding" \
   --remove-category="Application" \
   --add-category="Video" \
-  --add-category="TV" \
-  --add-category="X-MandrivaLinux-CrossDesktop" \
   --add-category="Network" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
