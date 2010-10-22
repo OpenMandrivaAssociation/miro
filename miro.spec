@@ -1,11 +1,6 @@
-#gw as Fedora does:
-%define xulrunner 1.9
-%define libname %mklibname xulrunner %xulrunner
-%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
-
 Name:		miro
-Version:	3.0.3
-Release:	%mkrel 2
+Version:	3.5
+Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -23,13 +18,9 @@ BuildRequires:	libxcb-devel
 BuildRequires:	libpthread-stubs
 %endif
 BuildRequires:	gtk2-devel
-%if %mdvver >= 201000
-BuildRequires:	xulrunner-devel
-%else
-BuildRequires:	xulrunner-devel-unstable
-%endif
+BuildRequires:	webkitgtk-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	libxv-devel
+BuildRequires:	libx11-devel
 BuildRequires:	imagemagick
 %if %mdvver > 200810
 BuildRequires:	libtorrent-rasterbar-devel
@@ -39,17 +30,12 @@ Requires:	python-libtorrent-rasterbar
 BuildRequires:  libboost-devel
 %endif
 Requires:	pygtk2.0
-Requires:	gnome-python-gtkmozembed
+Requires:	python-webkitgtk
 Requires:	gnome-python-gconf
 Requires:	dbus-python
 Requires:	python-pyrex
 Requires:	gstreamer0.10-python
 Requires:	gstreamer0.10-plugins-base
-%if %mdvver >= 201000
-Requires: libxulrunner = %{xulrunner_version}
-%else
-Requires: %libname = %xulver
-%endif
 
 Requires(post):		desktop-file-utils
 Requires(postun):	desktop-file-utils
@@ -62,18 +48,14 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q -n %name-%version
-sed -i 's@^XPCOM_RUNTIME_PATH =.*@XPCOM_RUNTIME_PATH = "%xulrunner_mozappdir"@' \
-       platform/gtk-x11/setup.py
-sed -i 's@^MOZILLA_LIB_PATH =.*@MOZILLA_LIB_PATH = "%xulrunner_mozappdir"@' \
-       platform/gtk-x11/setup.py
 
 %build
-cd platform/gtk-x11 && CFLAGS="%{optflags}" LDFLAGS="%?ldflags" %{__python} setup.py build
+cd linux && CFLAGS="%{optflags}" LDFLAGS="%?ldflags" %{__python} setup.py build
 
 %install
 rm -rf %{buildroot}
-cd platform/gtk-x11 && %{__python} setup.py install -O1 --skip-build --root %{buildroot}
-cd ../..
+cd linux && %{__python} setup.py install -O1 --skip-build --root %{buildroot}
+cd ..
 %find_lang miro
 
 perl -pi -e 's,miro-72x72.png,%{name},g' %{buildroot}%{_datadir}/applications/*
