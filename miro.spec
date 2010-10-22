@@ -13,6 +13,7 @@ BuildRequires:	webkitgtk-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	libx11-devel
 BuildRequires:	imagemagick
+%py_requires -d
 Requires:	pygtk2.0
 Requires:	python-webkitgtk
 Requires:	gnome-python-gconf
