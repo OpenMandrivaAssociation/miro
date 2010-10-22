@@ -17,9 +17,10 @@ Requires:	pygtk2.0
 Requires:	python-webkitgtk
 Requires:	gnome-python-gconf
 Requires:	dbus-python
-Requires:	python-pyrex
 Requires:	gstreamer0.10-python
-Requires:	gstreamer0.10-plugins-base
+Requires:	gstreamer0.10-plugins-good
+Requires:	python-libtorrent-rasterbar
+Requires:	python-curl
 Provides:	democracy
 Obsoletes:	democracy
 
