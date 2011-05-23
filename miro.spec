@@ -1,5 +1,5 @@
 Name:		miro
-Version:	3.5.1
+Version:	4.0
 Release:	%mkrel 1
 Summary:	Miro Player
 Group:		Video
@@ -7,13 +7,15 @@ License:	GPLv2+
 URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%name-%version.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires:	pygtk2.0-devel
 BuildRequires:	python-gobject-devel
 BuildRequires:	python-pyrex
 BuildRequires:	webkitgtk-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	libx11-devel
 BuildRequires:	imagemagick
-%py_requires -d
+BuildRequires:	python-devel
+BuildRequires:	ffmpeg-devel
 Requires:	pygtk2.0
 Requires:	python-webkitgtk
 Requires:	gnome-python-gconf
@@ -49,20 +51,8 @@ desktop-file-install --vendor="" \
   --add-category="Network" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
-gunzip %buildroot%{_mandir}/man1/*.gz
-
 %clean
 rm -rf %{buildroot}
-
-%post
-%update_desktop_database
-%update_mime_database
-%update_icon_cache hicolor
-
-%postun
-%clean_desktop_database
-%clean_mime_database
-%clean_icon_cache hicolor
 
 %files -f miro.lang
 %defattr(-,root,root,-)
