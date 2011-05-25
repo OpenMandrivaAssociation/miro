@@ -1,6 +1,6 @@
 Name:		miro
-Version:	4.0
-Release:	2
+Version:	4.0.1
+Release:	1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
