@@ -1,5 +1,5 @@
 Name:		miro
-Version:	4.0.1
+Version:	4.0.1.1
 Release:	1
 Summary:	Miro Player
 Group:		Video
