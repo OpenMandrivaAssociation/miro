@@ -15,7 +15,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	libx11-devel
 BuildRequires:	imagemagick
 BuildRequires:	python-devel
-%if %mdvver >= 2012000
+%if %mdvver >= 201200
 BuildRequires:	ffmpeg0.7-devel
 %else
 BuildRequires:	ffmpeg-devel
