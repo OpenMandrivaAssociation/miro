@@ -1,6 +1,6 @@
 Name:		miro
-Version:	4.0.1.1
-Release:	2
+Version:	4.0.3
+Release:	1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -15,7 +15,11 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	libx11-devel
 BuildRequires:	imagemagick
 BuildRequires:	python-devel
+%if %mdvver >= 2012000
+BuildRequires:	ffmpeg0.7-devel
+%else
 BuildRequires:	ffmpeg-devel
+%endif
 Requires:	pygtk2.0
 Requires:	python-webkitgtk
 Requires:	gnome-python-gconf
