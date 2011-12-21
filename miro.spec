@@ -1,6 +1,6 @@
 Name:		miro
 Version:	4.0.3
-Release:	1
+Release:	2
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
@@ -29,6 +29,7 @@ Requires:	gstreamer0.10-plugins-good
 Requires:	python-libtorrent-rasterbar
 Requires:	python-curl
 Requires:	mutagen
+Requires:   ffmpeg2theora
 Provides:	democracy
 Obsoletes:	democracy
 
