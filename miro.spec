@@ -1,12 +1,11 @@
 Name:		miro
-Version:	4.0.4
+Version:	4.0.6
 Release:	1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
 URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%name-%version.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	python-gobject-devel
 BuildRequires:	python-pyrex
@@ -43,7 +42,6 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 cd linux && CFLAGS="%{optflags}" LDFLAGS="%?ldflags" %{__python} setup.py build
 
 %install
-rm -rf %{buildroot}
 cd linux && %{__python} setup.py install -O1 --skip-build --root %{buildroot}
 cd ..
 %find_lang miro
@@ -57,8 +55,6 @@ desktop-file-install --vendor="" \
   --add-category="Network" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
-%clean
-rm -rf %{buildroot}
 
 %files -f miro.lang
 %defattr(-,root,root,-)
