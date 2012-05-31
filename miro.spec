@@ -5,6 +5,8 @@
 # https://github.com/paulswartz/miro/commit/42365981a8c4236573419538a3e70cd22f5f5341
 # So, it's better to avoid untested backports via build system
 
+%define _duplicate_files_terminate_build 0
+
 Name:		miro
 Version:	5.0
 Release:	1
@@ -13,19 +15,17 @@ Group:		Video
 License:	GPLv2+
 URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%{name}-%{version}.tar.gz
+BuildRequires:	boost-devel
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	python-gobject-devel
 BuildRequires:	python-pyrex
 BuildRequires:	webkitgtk-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	libx11-devel
+BuildRequires:	pkgconfig(x11)
 BuildRequires:	imagemagick
 BuildRequires:	python-devel
-%if %mdvver >= 201200
-BuildRequires:	ffmpeg0.7-devel
-%else
 BuildRequires:	ffmpeg-devel
-%endif
+BuildRequires:	pkgconfig(taglib)
 Requires:	pygtk2.0
 Requires:	python-webkitgtk
 Requires:	gnome-python-gconf
@@ -35,6 +35,7 @@ Requires:	gstreamer0.10-plugins-good
 Requires:	python-libtorrent-rasterbar
 Requires:	python-curl
 Requires:	mutagen
+Requires:	ffmpeg
 Requires:	ffmpeg2theora
 
 %description
@@ -77,3 +78,4 @@ desktop-file-install --vendor="" \
 %{_mandir}/man1/*
 %{_datadir}/mime/packages/*.xml
 %{py_platsitedir}/miro*
+
