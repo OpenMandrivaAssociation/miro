@@ -5,7 +5,7 @@
 # https://github.com/paulswartz/miro/commit/42365981a8c4236573419538a3e70cd22f5f5341
 # So, it's better to avoid untested backports via build system
 
-%define _duplicate_files_terminate_build 0
+%define _files_listed_twice_terminate_build 0
 
 Name:		miro
 Version:	5.0
