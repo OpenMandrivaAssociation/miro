@@ -8,14 +8,13 @@
 %define _files_listed_twice_terminate_build 0
 
 Name:		miro
-Version:	5.0.4
+Version:	6.0
 Release:	1
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
 URL:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%{name}-%{version}.tar.gz
-Patch0:		miro-5.0-ffmpeg0.11.patch
 BuildRequires:	boost-devel
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
@@ -44,7 +43,6 @@ Internet TV player with integrated RSS and BitTorrent functionality.
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 cd linux && CFLAGS="%{optflags}" LDFLAGS="%?ldflags" %__python setup.py build
