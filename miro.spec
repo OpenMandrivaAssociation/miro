@@ -29,7 +29,7 @@ BuildRequires:	pkgconfig(taglib)
 Requires:	pygtk2.0
 Requires:	python-webkitgtk
 Requires:	gnome-python-gconf
-Requires:	dbus-python
+Requires:	python-dbus
 Requires:	gstreamer0.10-python
 Requires:	gstreamer0.10-plugins-good
 Requires:	python-libtorrent-rasterbar
