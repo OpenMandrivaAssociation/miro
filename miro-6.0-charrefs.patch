@@ -1,0 +1,36 @@
+From 40a84fba76ed5e5134059314e92ec1949b654e64 Mon Sep 17 00:00:00 2001
+From: Ben Dean-Kawamura <ben@pculture.org>
+Date: Tue, 23 Apr 2013 12:01:11 -0400
+Subject: [PATCH] bz19983: handle bad XML charrefs without crashing
+
+---
+ tv/lib/util.py | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/tv/lib/util.py b/tv/lib/util.py
+index a08f837..6808c33 100644
+--- a/tv/lib/util.py
++++ b/tv/lib/util.py
+@@ -900,11 +900,15 @@ def handle_data(self, data):
+         self._add(data)
+ 
+     def handle_charref(self, ref):
+-        if ref.startswith('x'):
+-            charnum = int(ref[1:], 16)
++        try:
++            if ref.startswith('x'):
++                charnum = int(ref[1:], 16)
++            else:
++                charnum = int(ref)
++        except ValueError:
++            logging.warn("Error parsing charref: %s", ref, exc_info=True)
+         else:
+-            charnum = int(ref)
+-        self._add(unichr(charnum))
++            self._add(unichr(charnum))
+ 
+     def start_p(self, attributes):
+         self._add("\n")
+-- 
+1.8.5.1
+

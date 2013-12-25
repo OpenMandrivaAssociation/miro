@@ -1,68 +1,39 @@
-# It's possible to backport Miro to 2011 and 2010.2
-# but ffmpeg conversion needs to be checked
-# In order to use Miro 5.0 in 2010.2 with ffmpeg 0.7.12 from MIB
-# I had to make a patch that removes this commit's code:
-# https://github.com/paulswartz/miro/commit/42365981a8c4236573419538a3e70cd22f5f5341
-# So, it's better to avoid untested backports via build system
-
-%define _files_listed_twice_terminate_build 0
-
+Summary:	Miro Player
 Name:		miro
 Version:	6.0
-Release:	1
-Summary:	Miro Player
-Group:		Video
+Release:	4
 License:	GPLv2+
-URL:		http://www.getmiro.com/
+Group:		Video
+Url:		http://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%{name}-%{version}.tar.gz
+Patch0:		miro-6.0-charrefs.patch
+Patch1:		miro-6.0-sqlite-fixes.patch
+Patch2:		miro-6.0-video-controls.patch
+BuildRequires:	desktop-file-utils
+BuildRequires:	imagemagick
+BuildRequires:	python-pyrex
 BuildRequires:	boost-devel
+BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
-BuildRequires:	python-pyrex
-BuildRequires:	pkgconfig(webkit-1.0)
-BuildRequires:	desktop-file-utils
-BuildRequires:	pkgconfig(x11)
-BuildRequires:	imagemagick
 BuildRequires:	pkgconfig(python)
-BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(taglib)
-Requires:	pygtk2.0
-Requires:	python-webkitgtk
+BuildRequires:	pkgconfig(webkit-1.0)
+BuildRequires:	pkgconfig(x11)
 Requires:	gnome-python-gconf
-Requires:	python-dbus
-Requires:	gstreamer0.10-python
-Requires:	gstreamer0.10-plugins-good
-Requires:	python-libtorrent-rasterbar
-Requires:	python-curl
-Requires:	mutagen
+Requires:	dbus-python
 Requires:	ffmpeg
 Requires:	ffmpeg2theora
+Requires:	gstreamer0.10-python
+Requires:	gstreamer0.10-plugins-good
+Requires:	mutagen
+Requires:	pygtk2.0
+Requires:	python-curl
+Requires:	python-libtorrent-rasterbar
+Requires:	python-webkitgtk
 
 %description
 Internet TV player with integrated RSS and BitTorrent functionality.
-
-%prep
-%setup -q
-
-%build
-cd linux && CFLAGS="%{optflags}" LDFLAGS="%?ldflags" %__python setup.py build
-
-%install
-cd linux && %__python setup.py install -O1 --skip-build --root %{buildroot}
-cd ..
-
-%find_lang miro
-
-desktop-file-install --vendor="" \
-  --remove-key="Encoding" \
-  --remove-category="Application" \
-  --add-category="Video" \
-  --add-category="Network" \
-  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
-
-
-# Some binaries that we don't seem to need
-%__rm -rf %{buildroot}%{_bindir}/codegen*
 
 %files -f miro.lang
 %doc README CREDITS
@@ -74,3 +45,35 @@ desktop-file-install --vendor="" \
 %{_mandir}/man1/*
 %{_datadir}/mime/packages/*.xml
 %{py_platsitedir}/miro*
+
+#----------------------------------------------------------------------------
+
+%prep
+%setup -q
+%patch0 -p2
+%patch1 -p2
+%patch2 -p2
+
+%build
+pushd linux
+CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" python setup.py build
+popd
+
+%install
+pushd linux
+python setup.py install -O1 --skip-build --root %{buildroot}
+popd
+
+%find_lang miro
+sed -i '/.*testdata.*/d' miro.lang
+
+desktop-file-install --vendor="" \
+	--remove-key="Encoding" \
+	--remove-category="Application" \
+	--add-category="Video" \
+	--add-category="Network" \
+	--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
+
+# Some binaries that we don't seem to need
+rm -rf %{buildroot}%{_bindir}/codegen*
+
