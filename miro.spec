@@ -1,7 +1,7 @@
 Summary:	Miro Player
 Name:		miro
 Version:	6.0
-Release:	4
+Release:	5
 License:	GPLv2+
 Group:		Video
 Url:		http://www.getmiro.com/
