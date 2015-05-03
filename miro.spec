@@ -9,7 +9,7 @@
 
 Name:		miro
 Version:	6.0
-Release:	1
+Release:	2
 Summary:	Miro Player
 Group:		Video
 License:	GPLv2+
