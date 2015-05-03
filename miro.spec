@@ -24,7 +24,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	imagemagick
 BuildRequires:	pkgconfig(python)
-BuildRequires:	ffmpeg-devel
+BuildRequires:	ffmpeg-devel >= 2.5.4
 BuildRequires:	pkgconfig(taglib)
 Requires:	pygtk2.0
 Requires:	python-webkitgtk
@@ -35,7 +35,7 @@ Requires:	gstreamer0.10-plugins-good
 Requires:	python-libtorrent-rasterbar
 Requires:	python-curl
 Requires:	mutagen
-Requires:	ffmpeg
+Requires:	ffmpeg >= 2.5.4
 Requires:	ffmpeg2theora
 
 %description
