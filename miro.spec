@@ -31,6 +31,7 @@ Requires:	pygtk2.0
 Requires:	python-curl
 Requires:	python-libtorrent-rasterbar
 Requires:	python-webkitgtk
+Requires:	glib-networking
 
 %description
 Internet TV player with integrated RSS and BitTorrent functionality.
