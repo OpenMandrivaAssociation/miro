@@ -37,6 +37,7 @@ Requires:	python-curl
 Requires:	mutagen
 Requires:	ffmpeg >= 2.5.4
 Requires:	ffmpeg2theora
+Requires:	glib-networking
 
 %description
 Internet TV player with integrated RSS and BitTorrent functionality.
