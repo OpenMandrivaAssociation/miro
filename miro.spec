@@ -4,7 +4,7 @@ Version:	6.0
 Release:	5
 License:	GPLv2+
 Group:		Video
-Url:		http://www.getmiro.com/
+Url:		https://www.getmiro.com/
 Source0:	ftp://ftp.osuosl.org/pub/pculture.org/miro/src/%{name}-%{version}.tar.gz
 Patch0:		miro-6.0-charrefs.patch
 Patch1:		miro-6.0-sqlite-fixes.patch
